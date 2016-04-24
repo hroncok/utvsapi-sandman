@@ -7,7 +7,7 @@ from utvsapi import modelstore
 
 class CustomizingMixin(Model):
     '''Mixin that adds customization for the output'''
-    def rename(self, column):
+    def _rename(self, column):
         '''Return a new name for a column'''
         try:
             return self.__renames__[column]
@@ -18,7 +18,7 @@ class CustomizingMixin(Model):
         '''Return the resource as a dictionary'''
         result_dict = {}
         for column in self.__table__.columns:
-            name = self.rename(column.key)
+            name = self._rename(column.key)
             value = result_dict[name] = getattr(self, column.key, None)
             try:
                 if column.foreign_keys:
