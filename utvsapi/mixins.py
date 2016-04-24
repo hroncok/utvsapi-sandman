@@ -26,8 +26,9 @@ class CustomizingMixin(Model):
                     # We always have only one on one column
                     fk = list(column.foreign_keys)[0]
                     model = modelstore.reverse_lookup(fk.column.table)
-                    uri = model.query.get(int(value)).resource_uri()
-                    result_dict[name] = uri
+                    instance = model.query.get(int(value))
+                    if instance:
+                        result_dict[name] = instance.resource_uri()
                 elif isinstance(column.type, db.Integer):
                     # Return the value as int, otherwise it might
                     # get returned as str due to bad SQL type
