@@ -23,7 +23,7 @@ class CustomizingMixin(Model):
             try:
                 if column.foreign_keys:
                     # Foreign key, turn it to a link, HATEOAS, yay!
-                    # We always have only one on one column
+                    # We always have only one f. key in one column
                     fk = list(column.foreign_keys)[0]
                     model = modelstore.reverse_lookup(fk.column.table)
                     instance = model.query.get(int(value))
