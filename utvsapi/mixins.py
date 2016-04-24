@@ -38,4 +38,5 @@ class CustomizingMixin(Model):
                     result_dict[name] = value.isoformat()
             except ValueError:
                 pass  # data header won't pass
+            result_dict['self'] = self.resource_uri()
         return result_dict
