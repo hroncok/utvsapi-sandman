@@ -36,7 +36,7 @@ class CustomizingMixin(Model):
                 elif isinstance(value, datetime.datetime):
                     # Display datetimes in ISO format
                     result_dict[name] = value.isoformat()
-            except ValueError:
+            except (TypeError, ValueError):
                 pass  # data header won't pass
             result_dict['self'] = self.resource_uri()
         return result_dict
