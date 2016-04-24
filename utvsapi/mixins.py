@@ -7,20 +7,11 @@ from utvsapi import modelstore
 
 class CustomizingMixin(Model):
     '''Mixin that adds customization for the output'''
-    renames = {
-        'id_lector': 'id_teacher',
-        'pers_number': 'personal_number',
-        'id_student': 'id_enrollment',
-        'utvs': 'course',
-        'id_subjects': 'id_course',
-        'lector': 'teacher',
-    }
-
     def rename(self, column):
         '''Return a new name for a column'''
         try:
-            return self.renames[column]
-        except KeyError:
+            return self.__renames__[column]
+        except (AttributeError, KeyError):
             return column
 
     def to_dict(self):

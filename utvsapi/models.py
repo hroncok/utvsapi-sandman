@@ -24,6 +24,10 @@ class Halls(mixins.CustomizingMixin, db.Model):
 @modelstore.register
 class Teachers(mixins.CustomizingMixin, db.Model):
     __tablename__ = 'v_lectors'
+    __renames__ = {
+        'id_lector': 'id_teacher',
+        'pers_number': 'personal_number',
+    }
 
     id_lector = db.Column(db.Integer, primary_key=True)
     title_before = db.Column(db.String)
@@ -47,6 +51,10 @@ class Sports(mixins.CustomizingMixin, db.Model):
 @modelstore.register
 class Enrollments(mixins.CustomizingMixin, db.Model):
     __tablename__ = 'v_students'
+    __renames__ = {
+        'id_student': 'id_enrollment',
+        'utvs': 'course',
+    }
 
     id_student = db.Column(db.Integer, primary_key=True)
     personal_number = db.Column(db.Integer)
@@ -61,6 +69,10 @@ class Enrollments(mixins.CustomizingMixin, db.Model):
 @modelstore.register
 class Courses(mixins.CustomizingMixin, db.Model):
     __tablename__ = 'v_subjects'
+    __renames__ = {
+        'id_subjects': 'id_course',
+        'lector': 'teacher',
+    }
 
     id_subjects = db.Column(db.Integer, primary_key=True)
     sport = db.Column(db.Integer, db.ForeignKey('v_sports.id_sport'))
