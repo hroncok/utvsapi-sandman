@@ -11,6 +11,8 @@ To use this, create file named `mysql.cnf` with your MySQL credentials, see an e
     database = dbname
     password = insecurepassword
 
+This has been developed and run on Python 3 only, legacy Python might not work.
+
 Install `sandman2` and `mysqlclient` (you'll need mysql devel package for that). You might do it with virtualenv:
 
     pyvenv venv
