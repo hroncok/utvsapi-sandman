@@ -6,20 +6,14 @@ from utvsapi import modelstore
 
 
 class CustomizingMixin(Model):
-    '''Mixin that adds customization for the output'''
-    def _rename(self, column):
-        '''Return a new name for a column'''
-        try:
-            return self.__renames__[column]
-        except (AttributeError, KeyError):
-            return column
-
+    '''Mixin that fixes primary_key method
+    and adds customization for the output'''
     def to_dict(self):
         '''Return the resource as a dictionary'''
         result_dict = {}
         for column in self.__table__.columns:
-            name = self._rename(column.key)
-            value = result_dict[name] = getattr(self, column.key, None)
+            name = column.key
+            value = result_dict[name] = getattr(self, name, None)
             try:
                 if column.foreign_keys:
                     # Foreign key, turn it to a link, HATEOAS, yay!
@@ -40,3 +34,7 @@ class CustomizingMixin(Model):
                 pass  # data header won't pass
             result_dict['self'] = self.resource_uri()
         return result_dict
+
+    def primary_key(self):
+        '''Return the key of the model's primary key field'''
+        return list(self.__table__.primary_key.columns)[0].key
