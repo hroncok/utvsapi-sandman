@@ -1,7 +1,8 @@
 utvsapi-sandman
 ===============
 
-A REST-like API for [ÚTVS ČVUT](https://rozvoj.fit.cvut.cz/Main/rozvrhy-utvs-db) implemented in [sandman2](https://github.com/jeffknupp/sandman2).
+A REST-like read-only API for [ÚTVS ČVUT](https://rozvoj.fit.cvut.cz/Main/rozvrhy-utvs-db)
+implemented in [sandman2](https://github.com/jeffknupp/sandman2).
 
 To use this, create file named `mysql.cnf` with your MySQL credentials, see an example here:
 
