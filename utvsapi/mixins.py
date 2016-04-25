@@ -36,5 +36,7 @@ class CustomizingMixin(Model):
         return result_dict
 
     def primary_key(self):
-        '''Return the key of the model's primary key field'''
+        '''Return the key of the model's primary key field
+
+        https://github.com/jeffknupp/sandman2/pull/35'''
         return list(self.__table__.primary_key.columns)[0].key
