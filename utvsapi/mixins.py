@@ -8,6 +8,7 @@ from utvsapi import modelstore
 class CustomizingMixin(Model):
     '''Mixin that fixes primary_key method
     and adds customization for the output'''
+
     def to_dict(self):
         '''Return the resource as a dictionary'''
         result_dict = {}
@@ -33,6 +34,12 @@ class CustomizingMixin(Model):
             except (TypeError, ValueError):
                 pass  # data header won't pass
             result_dict['self'] = self.resource_uri()
+            try:
+                if not result_dict['_kos_code']:
+                    result_dict['kos_course_code'] = None
+                del result_dict['_kos_code']
+            except KeyError:
+                pass
         return result_dict
 
     def primary_key(self):
