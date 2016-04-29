@@ -40,8 +40,8 @@ class Teachers(mixins.CustomizingMixin, db.Model):
 class Sports(mixins.CustomizingMixin, db.Model):
     __tablename__ = 'v_sports'
 
-    id = db.Column('id_sport', db.Integer, primary_key=True, key='id')
-    shortcut = db.Column('short', db.String, key='shortcut')
+    id = db.Column('id_sport', db.Integer, key='id')
+    shortcut = db.Column('short', db.String, primary_key=True, key='shortcut')
     name = db.Column('sport', db.String, key='name')
     description = db.Column(db.String)
 

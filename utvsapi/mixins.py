@@ -20,7 +20,7 @@ class CustomizingMixin(Model):
                 # We always have only one f. key in one column
                 fk = list(column.foreign_keys)[0]
                 model = modelstore.reverse_lookup(fk.column.table)
-                instance = model.query.get(int(value))
+                instance = model.query.filter_by(id=int(value)).first()
                 if instance:
                     result_dict['_links'][name] = {'href': instance.resource_uri()}
                     del result_dict[name]
