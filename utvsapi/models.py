@@ -31,7 +31,7 @@ class Teachers(mixins.CustomizingMixin, db.Model):
     first_name = db.Column('name', db.String, key='first_name')
     last_name = db.Column('surname', db.String, key='last_name')
     degrees_after = db.Column('title_behind', db.String, key='degrees_after')
-    personal_number = db.Column('pers_number', db.String,
+    personal_number = db.Column('pers_number', db.Integer,
                                 key='personal_number')
     url = db.Column(db.String)
 
